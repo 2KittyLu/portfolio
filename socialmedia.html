@@ -128,6 +128,65 @@ title: Social Media
 
     </div>
 
+
+    <!-- =========================================
+         REELS
+         ========================================= -->
+
+    <section class="reels-section">
+
+        <div class="reels-header">
+
+            <div class="reels-small-title">
+                VIDEO WORK
+            </div>
+
+            <h2>REELS</h2>
+
+            <p>
+                Short-form video filming & editing
+            </p>
+
+        </div>
+
+
+        <div class="reels-grid">
+
+            {% for video in site.static_files %}
+
+                {% if video.path contains '/videos/reels/' %}
+
+                    {% assign ext = video.extname | downcase %}
+
+                    {% if ext == '.mp4' %}
+
+                        <article class="reel-item">
+
+                            <video
+                                controls
+                                preload="metadata"
+                                playsinline>
+
+                                <source
+                                    src="{{ site.baseurl }}{{ video.path }}"
+                                    type="video/mp4">
+
+                                Your browser does not support the video tag.
+
+                            </video>
+
+                        </article>
+
+                    {% endif %}
+
+                {% endif %}
+
+            {% endfor %}
+
+        </div>
+
+    </section>
+
 </section>
 
 
@@ -245,14 +304,9 @@ title: Social Media
         );
 
     box-shadow:
-        inset 0 1px 0
-        rgba(255,255,255,0.05),
-
-        inset 0 -1px 0
-        rgba(0,0,0,0.14),
-
-        0 5px 14px
-        rgba(0,0,0,0.12);
+        inset 0 1px 0 rgba(255,255,255,0.05),
+        inset 0 -1px 0 rgba(0,0,0,0.14),
+        0 5px 14px rgba(0,0,0,0.12);
 
     color:
         rgba(255,255,255,0.76)
@@ -294,11 +348,8 @@ title: Social Media
         );
 
     box-shadow:
-        inset 0 1px 0
-        rgba(170,255,240,0.10),
-
-        0 0 13px
-        rgba(50,200,180,0.06);
+        inset 0 1px 0 rgba(170,255,240,0.10),
+        0 0 13px rgba(50,200,180,0.06);
 
     transform:
         translateY(-1px);
@@ -333,9 +384,6 @@ title: Social Media
     border-color: rgba(255,255,255,.35);
 }
 
-
-/* IMPORTANT:
-   ORIGINAL IMAGE SIZE KEPT EXACTLY */
 
 .social-card img {
     display: block;
@@ -374,6 +422,130 @@ title: Social Media
     letter-spacing: .12em;
 }
 
+
+/* =========================================
+   REELS SECTION
+   ========================================= */
+
+.reels-section {
+    margin-top: 95px;
+    padding-top: 58px;
+
+    border-top:
+        1px solid
+        rgba(255,255,255,0.10);
+}
+
+
+.reels-header {
+    max-width: 760px;
+    margin: 0 auto 40px;
+    text-align: center;
+}
+
+
+.reels-small-title {
+    margin-bottom: 14px;
+
+    font-size: 0.76em;
+    font-weight: 400;
+
+    line-height: 1.3;
+
+    letter-spacing: 0.30em;
+
+    color:
+        rgba(255,255,255,0.48);
+}
+
+
+.reels-header h2 {
+    margin: 0 0 15px;
+
+    font-size: 2.4em;
+    font-weight: 300;
+
+    line-height: 1.1;
+
+    letter-spacing: 0.14em;
+
+    color:
+        rgba(255,255,255,0.94);
+}
+
+
+.reels-header p {
+    margin: 0;
+
+    font-size: 1em;
+    line-height: 1.6;
+
+    color:
+        rgba(255,255,255,0.58);
+}
+
+
+/* =========================================
+   REELS GRID
+   ========================================= */
+
+.reels-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap: 28px;
+
+    max-width: 1000px;
+
+    margin: 0 auto;
+}
+
+
+.reel-item {
+    margin: 0;
+    padding: 0;
+
+    overflow: hidden;
+
+    border:
+        1px solid
+        rgba(255,255,255,0.12);
+
+    border-radius: 8px;
+
+    background: #111315;
+}
+
+
+.reel-item video {
+    display: block;
+
+    width: 100%;
+
+    aspect-ratio: 9 / 16;
+
+    object-fit: contain;
+
+    background: #000;
+}
+
+
+/* =========================================
+   TABLET REELS
+   ========================================= */
+
+@media screen and (max-width: 980px) {
+
+    .reels-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
+        max-width: 700px;
+    }
+
+}
 
 
 /* =========================================
@@ -460,7 +632,6 @@ title: Social Media
 
     /* =========================================
        MOBILE BACK HOME
-       SAME GLASS STYLE
        ========================================= */
 
     .social-back-home {
@@ -489,11 +660,8 @@ title: Social Media
             );
 
         box-shadow:
-            inset 0 1px 0
-            rgba(255,255,255,0.06),
-
-            0 5px 14px
-            rgba(0,0,0,0.13);
+            inset 0 1px 0 rgba(255,255,255,0.06),
+            0 5px 14px rgba(0,0,0,0.13);
 
         color:
             rgba(255,255,255,0.84)
@@ -548,9 +716,6 @@ title: Social Media
     }
 
 
-    /* IMPORTANT:
-       ORIGINAL MOBILE IMAGE SIZE KEPT EXACTLY */
-
     .social-card img {
         height: auto;
         max-height: 520px;
@@ -559,14 +724,10 @@ title: Social Media
     }
 
 
-    /* Card information area */
-
     .social-card-info {
         padding: 25px 18px 28px;
     }
 
-
-    /* Account name */
 
     .social-card-info h2 {
         font-size: 1.35em !important;
@@ -577,16 +738,12 @@ title: Social Media
     }
 
 
-    /* Facebook / Instagram */
-
     .social-card-info p {
         font-size: 1.15em !important;
         line-height: 1.4;
         margin-bottom: 18px;
     }
 
-
-    /* VIEW FACEBOOK / VIEW INSTAGRAM */
 
     .social-card-info span {
         font-size: 1.12em !important;
@@ -599,6 +756,69 @@ title: Social Media
         border:
             2px solid
             rgba(255,255,255,.65);
+    }
+
+
+    /* =========================================
+       MOBILE REELS
+       ========================================= */
+
+    .reels-section {
+        margin-top: 75px;
+        padding-top: 48px;
+    }
+
+
+    .reels-header {
+        margin-bottom: 32px;
+    }
+
+
+    .reels-small-title {
+        font-size: 0.95em;
+
+        font-weight: 500;
+
+        letter-spacing: 0.17em;
+    }
+
+
+    .reels-header h2 {
+        font-size: 2.2em !important;
+
+        font-weight: 400;
+
+        letter-spacing: 0.12em;
+
+        margin-bottom: 14px;
+    }
+
+
+    .reels-header p {
+        font-size: 1.08em;
+        line-height: 1.6;
+    }
+
+
+    .reels-grid {
+        grid-template-columns: 1fr;
+
+        gap: 28px;
+
+        max-width: 360px;
+
+        margin: 0 auto;
+    }
+
+
+    .reel-item video {
+        width: 100%;
+
+        aspect-ratio: 9 / 16;
+
+        object-fit: contain;
+
+        background: #000;
     }
 
 }
